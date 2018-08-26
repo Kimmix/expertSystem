@@ -1,0 +1,8 @@
+node_modules/
+.DS_Store
+.vscode/
+lib/
+include/
+hello.py
+package-lock.json
+pip-selfcheck.json
