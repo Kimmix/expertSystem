@@ -1,0 +1,21 @@
+{
+  "name": "expert",
+  "version": "1.0.0",
+  "description": "",
+  "main": "node.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.4",
+    "python-shell": "^1.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon node.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
