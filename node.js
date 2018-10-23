@@ -11,10 +11,10 @@ app.use(express.static(__dirname + '/src'));
 /* GET home page. */
 app.get('/res/api', (req, res, next) => {
   let options = {
-    mode: 'text',
-    pythonPath: './bin/python3',
-    pythonOptions: ['-u'],
-    scriptPath: './',
+    // mode: 'text',
+    // pythonPath: './bin/python3',
+    // pythonOptions: ['-u'],
+    // scriptPath: './',
     args: [req.query.light]
   };
   ps.PythonShell.run('main.py', options, (err, results) => {
