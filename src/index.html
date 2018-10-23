@@ -1,0 +1,98 @@
+<!-- <!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="grid">
+        <div id="quiz">
+            <h1>Expert System Demo</h1>
+            <hr style="margin-bottom: 20px">
+
+            <p id="question"></p>
+
+            <div class="buttons">
+                <button id="btn0"><span id="choice0"></span></button>
+                <button id="btn1"><span id="choice1"></span></button>
+                <button id="btn2"><span id="choice2"></span></button>
+                <button id="btn3"><span id="choice3"></span></button>
+            </div>
+
+            <hr style="margin-top: 50px">
+            <footer>
+                <p id="progress">Question x of y</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+    <script src="question.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html> -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Expert System Demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="bg">
+        <div class="uk-container uk-container-small">
+            <h1 class="uk-heading-hero">Expert System Demo</h1>
+            <br>
+            <div class="uk-card uk-card-default uk-card-hover">
+                <div class="uk-card uk-card-body">
+                    <h3 class="uk-card-title">What light did you see?</h3>
+                    <!-- method="GET" action="/res/api" -->
+                    <form name="form">
+                        <select class="uk-select" name="light" required>
+                            <option value="red">Red</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="green">Green</option>
+                        </select>
+                        <input class="uk-button uk-button-primary uk-button-large uk-width-1-1" type="submit" value="Submit"
+                            onclick="run(); return false">
+                    </form>
+                </div>
+            </div>
+            <br>
+            <div id="answerBox" class="uk-card uk-card-primary" style="display:none">
+                <div class="uk-card uk-card-body">
+                    <h2 id="answer" class="uk-card-title"></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function run() {
+        document.getElementById('answerBox').style.display = ''
+        axios.get('/res/api', {
+            params: {
+                light: document.form.light.value
+            }
+        })
+            .then(function (response) {
+                console.log(response.data.res);
+                document.getElementById("answer").innerHTML = response.data.res;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+</script>
+
+</html>
