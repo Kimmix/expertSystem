@@ -1834,6 +1834,7 @@ select.uk-form-width-xsmall {
  * 9. Required for `a`.
  */
 .uk-button {
+  -webkit-appearance: button;
   /* 1 */
   margin: 0;
   /* 2 */
