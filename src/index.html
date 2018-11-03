@@ -13,16 +13,42 @@
 <body>
   <div class="bg">
     <div class="uk-container uk-container-small">
-      <h1 class="uk-heading-hero">Expert System Demo</h1>
+      <h1 class="uk-heading-hero">What's that animal?</h1>
       <br>
       <div class="uk-card uk-card-default uk-card-hover">
         <div class="uk-card uk-card-body">
-          <h3 class="uk-card-title">What light did you see?</h3>
           <form name="form">
-            <select class="uk-select" name="light" required>
-              <option value="red">Red</option>
-              <option value="yellow">Yellow</option>
-              <option value="green">Green</option>
+            <h3>What's main charaterist?</h3>
+            <select class="uk-select" name="mcharaterist" required>
+              <option value="hair">Hairy</option>
+              <option value="feather">Feather</option>
+              <option value="egg">Lay egg</option>
+              <option value="give_milk">Give milk</option>
+            </select>
+            <h3>and</h3>
+            <select class="uk-select" name="scharaterist" required>
+              <option value="none">None</option>
+              <option value="pointy_teeth">Pointy teeth</option>
+              <option value="hooves">Hooves</option>
+              <option value="fly">Fly</option>
+              <option value="eat_meat">Eat meat</option>
+            </select>
+            <h3>It's color</h3>
+            <select class="uk-select" name="color" required>
+              <option value="white">White</option>
+              <option value="black_white">Black and White</option>
+              <option value="grey">Grey</option>
+              <option value="tawny">Tawny</option>
+            </select>
+            <h3>Any other feature?</h3>
+            <select class="uk-select" name="feature" required>
+              <option value="none">None</option>
+              <option value="long_neck">Long neck</option>
+              <option value="long_nose">Long nose</option>
+              <option value="spot">Spot</option>
+              <option value="mane">Mane</option>
+              <option value="horn">Horn</option>
+              <option value="strip">Strip</option>
             </select>
             <br>
             <p></p>
@@ -34,27 +60,94 @@
       <br>
       <div id="answerBox" class="uk-card uk-card-secondary" style="display:none">
         <div class="uk-card uk-card-body">
-          <h3 id="answer" class="uk-card-title" style="text-align:center;"><b></b></h3>
+          <h1 id="answer" style="text-align:center;"><b></b></h1>
+          <img id="animalpic" src="" class="responsive">
         </div>
       </div>
     </div>
+  </div>
   </div>
 </body>
 <script>
   function run() {
     // Show answerBox
     document.getElementById('answerBox').style.display = ''
-
+    let pic
     //Sent HTTP GET request to our express server
     axios.get('/res/api', {
       //Pass parameter here
       params: {
-        light: document.form.light.value
+        mcharaterist: document.form.mcharaterist.value,
+        scharaterist: document.form.scharaterist.value,
+        color: document.form.color.value,
+        feature: document.form.feature.value,
       }
     })
       .then(function (response) {
         //Get response from request
-        document.getElementById("answer").innerHTML = response.data.res;
+        document.getElementById("answer").innerHTML = response.data.res
+
+        if (response.data.res == null) document.getElementById("animalpic").src = "https://cdn.shopify.com/s/files/1/1302/0941/t/9/assets/logo.png?5590175536940362015"
+
+        else {
+          switch (response.data.res[0]) {
+            case "Polar Bear":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/53425/polar-bear-arctic-wildlife-snow-53425.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260";
+              break;
+
+            case "Pigeon":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/763197/pexels-photo-763197.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Zebra":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/763925/pexels-photo-763925.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Giraffe":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/1109905/pexels-photo-1109905.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Ostrich":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/60692/bird-animal-nature-strauss-60692.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Swan":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/132479/pexels-photo-132479.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Cheetah":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/1320598/pexels-photo-1320598.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Lion":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Horse":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/6468/animal-brown-horse.jpg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Rhino":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/16040/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Ram":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/158025/aries-wild-free-running-wildlife-park-158025.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Elephant":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/1054655/pexels-photo-1054655.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "White Tiger":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/133408/pexels-photo-133408.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+
+            case "Tiger":
+              document.getElementById("animalpic").src = "https://images.pexels.com/photos/40661/tiger-snow-growling-zoo-40661.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260"
+              break;
+          }
+        }
       })
       .catch(function (error) {
         console.log(error);

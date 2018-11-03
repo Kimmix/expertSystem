@@ -18,7 +18,7 @@ class WhatsThatAnimal(KnowledgeEngine):
     def rule2(self):
         self.declare(Fact(mammal=True))
 
-    @Rule(Animal(mcharaterist=("feather")), Animal(scharaterist=("scaly")))
+    @Rule(Animal(mcharaterist=("feather")), Animal(scharaterist=("none")))
     def rule3(self):
         self.declare(Fact(bird=True))
 
@@ -40,32 +40,32 @@ class WhatsThatAnimal(KnowledgeEngine):
         self.declare(Fact(ungulate=True))
 
     # Animal class Fact
-    @Rule(Fact(mammal=True))
-    def isMammal(self):
-        print("Is an mammal")
+    # @Rule(Fact(mammal=True))
+    # def isMammal(self):
+    #     print("Is an mammal")
 
-    @Rule(Fact(bird=True))
-    def isBird(self):
-        print("Is an bird")
+    # @Rule(Fact(bird=True))
+    # def isBird(self):
+    #     print("Is an bird")
 
-    @Rule(Fact(carnivore=True))
-    def isCarnivore(self):
-        print("Is an carnivore")
+    # @Rule(Fact(carnivore=True))
+    # def isCarnivore(self):
+    #     print("Is an carnivore")
 
-    @Rule(Fact(ungulate=True))
-    def isUngulate(self):
-        print("Is an ungulate")
+    # @Rule(Fact(ungulate=True))
+    # def isUngulate(self):
+    #     print("Is an ungulate")
 
     # Animal feature m=main s=sub
-    @Rule(Fact(carnivore=True), Animal(color=("white")))
+    @Rule(Fact(carnivore=True), Animal(color=("white")), Animal(feature=("none")))
     def rule8(self):
         print("Polar Bear")
 
-    @Rule(Fact(bird=True), Animal(color=("grey")))
+    @Rule(Fact(bird=True), Animal(color=("grey")), Animal(feature=("none")))
     def rule9(self):
         print("Pigeon")
 
-    @Rule(Fact(ungulate=True), Animal(color=("black_white")))
+    @Rule(Fact(ungulate=True), Animal(color=("black_white")), Animal(feature=("none")))
     def rule10(self):
         print("Zebra")
 
@@ -73,11 +73,7 @@ class WhatsThatAnimal(KnowledgeEngine):
     def rule11(self):
         print("Giraffe")
 
-    @Rule(
-        Fact(ungulate=True),
-        Animal(color=("black_white")),
-        Animal(feature=("long_neck")),
-    )
+    @Rule(Fact(bird=True), Animal(color=("black_white")), Animal(feature=("long_neck")))
     def rule12(self):
         print("Ostrich")
 

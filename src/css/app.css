@@ -52,3 +52,8 @@ h1 {
 .uk-button {
   -webkit-appearance: button;
 }
+
+.responsive {
+  max-width: 100%;
+  height: auto;
+}
