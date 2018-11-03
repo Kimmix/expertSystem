@@ -1,6 +1,6 @@
 .bg {
-  width: 100wh;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   color: #fff;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -56,4 +56,16 @@ h1 {
 .responsive {
   max-width: 100%;
   height: auto;
+}
+
+.footer {
+  /* position: ; */
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* width: 100%; */
+  /* min-height: 2vw; */
+  padding: 1rem;
+  background-color: #292929;
+  text-align: center;
 }
