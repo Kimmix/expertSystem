@@ -33,7 +33,7 @@ app.get('/', (req, res) =>
 );
 
 //Listen Server
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 5000;
 const localip = ip.address();
 app.listen(port, () =>
   console.log(
