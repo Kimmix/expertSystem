@@ -4,7 +4,6 @@ import sys
 
 class Animal(Fact):
     """Identify animal."""
-
     pass
 
 
@@ -23,15 +22,13 @@ class WhatsThatAnimal(KnowledgeEngine):
             AND(
                 Animal(mcharaterist=("egg")),
                 OR(
-                    Animal(scharaterist=("fly")),
-                    Animal(scharaterist=("none"))
+                    Animal(scharaterist=L("fly") | L("none")),
                 )
             ),
             AND(
                 Animal(mcharaterist=("feather")),
                 OR(
-                    Animal(scharaterist=("fly")),
-                    Animal(scharaterist=("none"))
+                    Animal(scharaterist=L("fly") | L("none")),
                 )
             )
             
@@ -90,7 +87,7 @@ class WhatsThatAnimal(KnowledgeEngine):
     @Rule(Fact(ungulate=True),
             AND(
                 Animal(color=("tawny")),
-                OR(Animal(feature=("long_neck")), Animal(feature=("spot"))),
+                OR(Animal(feature=L("long_neck") | L("spot"))),
             ),
     )
     def rule11(self):
