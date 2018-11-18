@@ -10,21 +10,39 @@ class Animal(Fact):
 
 class WhatsThatAnimal(KnowledgeEngine):
     # Characteristic m=main s=sub
-    @Rule(Animal(mcharaterist=("hair")))
+    @Rule(OR(Animal(mcharaterist=("hair")), Animal(mcharaterist=("give_milk"))))
     def rule1(self):
         self.declare(Fact(mammal=True))
 
-    @Rule(Animal(mcharaterist=("give_milk")))
-    def rule2(self):
-        self.declare(Fact(mammal=True))
+    # @Rule(Animal(mcharaterist=("give_milk")))
+    # def rule2(self):
+    #     self.declare(Fact(mammal=True))
 
-    @Rule(Animal(mcharaterist=("feather")), Animal(scharaterist=("none")))
+    @Rule(
+        OR(
+            AND(
+                Animal(mcharaterist=("egg")),
+                OR(
+                    Animal(scharaterist=("fly")),
+                    Animal(scharaterist=("none"))
+                )
+            ),
+            AND(
+                Animal(mcharaterist=("feather")),
+                OR(
+                    Animal(scharaterist=("fly")),
+                    Animal(scharaterist=("none"))
+                )
+            )
+            
+        )
+    )
     def rule3(self):
         self.declare(Fact(bird=True))
 
-    @Rule(Animal(mcharaterist=("egg")), Animal(scharaterist=("fly")))
-    def rule4(self):
-        self.declare(Fact(bird=True))
+    # @Rule(Animal(mcharaterist=("egg")), Animal(scharaterist=("fly")))
+    # def rule4(self):
+    #     self.declare(Fact(bird=True))
 
     ## Sub-Mammal
     @Rule(Fact(mammal=True), Animal(scharaterist=("eat_meat")))
@@ -69,7 +87,12 @@ class WhatsThatAnimal(KnowledgeEngine):
     def rule10(self):
         print("Zebra")
 
-    @Rule(Fact(ungulate=True), Animal(color=("tawny")), Animal(feature=("long_neck")))
+    @Rule(Fact(ungulate=True),
+            AND(
+                Animal(color=("tawny")),
+                OR(Animal(feature=("long_neck")), Animal(feature=("spot"))),
+            ),
+    )
     def rule11(self):
         print("Giraffe")
 
@@ -84,10 +107,6 @@ class WhatsThatAnimal(KnowledgeEngine):
     @Rule(Fact(carnivore=True), Animal(color=("tawny")), Animal(feature=("spot")))
     def rule14(self):
         print("Cheetah")
-
-    @Rule(Fact(ungulate=True), Animal(color=("tawny")), Animal(feature=("spot")))
-    def rule15(self):
-        print("Giraffe")
 
     @Rule(Fact(carnivore=True), Animal(color=("tawny")), Animal(feature=("mane")))
     def rule16(self):
