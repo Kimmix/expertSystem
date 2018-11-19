@@ -42,13 +42,17 @@ class WhatsThatAnimal(KnowledgeEngine):
     #     self.declare(Fact(bird=True))
 
     ## Sub-Mammal
-    @Rule(Fact(mammal=True), Animal(scharaterist=("eat_meat")))
+    @Rule(Fact(mammal=True), 
+        OR(
+            Animal(scharaterist=L("eat_meat") | L("pointy_teeth"))
+        )
+    )
     def rule5(self):
         self.declare(Fact(carnivore=True))
 
-    @Rule(Fact(mammal=True), Animal(scharaterist=("pointy_teeth")))
-    def rule6(self):
-        self.declare(Fact(carnivore=True))
+    # @Rule(Fact(mammal=True), Animal(scharaterist=("pointy_teeth")))
+    # def rule6(self):
+    #     self.declare(Fact(carnivore=True))
 
     @Rule(Fact(mammal=True), Animal(scharaterist=("hooves")))
     def rule7(self):
